@@ -10,7 +10,7 @@ import { Briefcase, Users, GraduationCap, ChevronDown, ChevronUp, Calendar, MapP
 
 export default function Experience() {
   const [filter, setFilter] = useState<'all' | 'internship_academic' | 'organization'>('all');
-  const [expandedIds, setExpandedIds] = useState<string[]>(['exp-1', 'exp-2', 'exp-3']); // expand top 3 by default
+  const [expandedIds, setExpandedIds] = useState<string[]>(['exp-bppp', 'exp-1', 'exp-2']); // expand top 3 by default
 
   const toggleExpand = (id: string) => {
     if (expandedIds.includes(id)) {

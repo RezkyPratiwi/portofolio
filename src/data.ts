@@ -11,10 +11,11 @@ export const PERSONAL_INFO = {
   location: 'Purwokerto Selatan, Banyumas, Jawa Tengah',
   phone: '(+62) 853-4257-5424',
   email: 'rezkyprat30@gmail.com',
+  campusEmail: '2211104029@ittelkom-pwt.ac.id',
   linkedin: 'https://www.linkedin.com/in/rezky-pratiwi-8a7046252/',
-  instagram: 'https://www.instagram.com/kyy_rp?igsh=bzlyNHNrM25udXoy',
+  instagram: 'https://instagram.com/rezprtt/',
   github: 'https://github.com/RezkyPratiwi',
-  portfolioLink: '',
+  portfolioLink: 'https://portofoliorezkypratiwi.vercel.app/',
   bio: 'Lulusan S1 Software Engineering Telkom University Purwokerto dengan predikat Cumlaude. Memiliki keahlian dalam pengembangan web menggunakan Laravel dan React, serta kompetensi di bidang UI/UX Design dan desain grafis. Terampil menggunakan Laravel, React, PHP, JavaScript, MySQL, Git, Figma, dan Canva untuk mendukung proses pengembangan produk digital dari tahap perancangan hingga implementasi. Aktif terlibat dalam berbagai proyek teknologi dan organisasi yang mengasah kemampuan kolaborasi tim, analisis kebutuhan pengguna, problem solving, serta penerapan pendekatan human-centered design. Siap berkontribusi dalam pengembangan solusi digital yang inovatif dan berdampak.',
 };
 
@@ -44,6 +45,23 @@ export const EDUCATION_DATA: Education[] = [
 ];
 
 export const EXPERIENCE_DATA: Experience[] = [
+  {
+    id: 'exp-bppp',
+    role: 'Staff Operasional Komputer dan Pelayanan Publik (Maganghub KEMENAKER)',
+    organization: 'Balai Pelatihan dan Penyuluhan Perikanan (BPPP) Ambon | KKP RI',
+    period: 'Agu 2026 – Sekarang',
+    type: 'internship',
+    location: 'Ambon, Maluku',
+    description: 'Mendukung operasional komputer, pelayanan publik, pengembangan sistem digital instansi (seperti SiPintar dan SiPinjam), serta komunikasi dan publikasi digital di lingkungan Kementerian Kelautan dan Perikanan RI.',
+    achievements: [
+      'Meredesign alur pengguna (user flow) pada sistem web peminjaman sarana dan prasarana (SiPinjam) untuk meningkatkan kejelasan proses dan efisiensi birokrasi, termasuk mekanisme approval menggunakan tanda tangan hasil pemindaian digital.',
+      'Berkontribusi dalam pengembangan aplikasi SiPintar, termasuk implementasi JSON Web Token (JWT) untuk mendukung mekanisme autentikasi aplikasi yang aman.',
+      'Mempelajari dan menerapkan teknologi modern dalam pengembangan aplikasi web dan mobile guna menunjang pelayanan informasi instansi.',
+      'Mendukung pengelolaan komunikasi dan publikasi digital melalui perancangan materi visual, produksi konten audiovisual, serta pengembangan media informasi instansi.',
+      'Melaksanakan proses produksi konten digital dari tahap perencanaan konsep, pengambilan materi, hingga penyuntingan untuk mendukung penyampaian informasi dan pelayanan kepada publik.',
+      'Mendukung operasional teknologi informasi dan kebutuhan teknis kegiatan instansi serta berkolaborasi dengan mentor dalam pelaksanaan proyek dan pemecahan masalah teknis.'
+    ]
+  },
   {
     id: 'exp-1',
     role: 'Asisten Praktikum Design Experience',
@@ -219,6 +237,48 @@ export const PUBLICATION_DATA: Publication[] = [
 ];
 
 export const PROJECT_DATA: Project[] = [
+  {
+    id: 'proj-sipintar',
+    title: 'SiPintar - Portal Layanan & Pelatihan BPPP Ambon',
+    type: 'Platform & Layanan Publik (KKP RI)',
+    period: 'Agu 2026 – Sekarang',
+    role: 'Full-Stack Developer & UI/UX Designer',
+    description: 'Sistem Informasi Pelatihan Terpadu (SIPINTAR v2) Balai Pelatihan dan Penyuluhan Perikanan (BPPP) Ambon di bawah Kementerian Kelautan dan Perikanan RI. Menyediakan layanan pendaftaran diklat perikanan, verifikasi keaslian sertifikat berbasis barcode, tracking status permohonan, dan sistem informasi kediklatan aparatur serta masyarakat.',
+    details: [
+      'Mengembangkan arsitektur web modular dengan implementasi autentikasi JWT (JSON Web Token) yang aman dan teruji.',
+      'Merancang antarmuka ramah pengguna (UI/UX) untuk kemudahan navigasi publik, pengecekan keaslian sertifikat diklat, dan informasi jadwal pelatihan.',
+      'Mengoptimalkan responsivitas layout dan kecepatan akses portal di berbagai perangkat desktop maupun mobile.',
+      'Mendukung keterbukaan informasi dan digitalisasi pelayanan kediklatan Kementerian Kelautan dan Perikanan RI.'
+    ],
+    tech: ['PHP', 'Laravel', 'JWT Authentication', 'MySQL', 'Bootstrap 5', 'UI/UX Design', 'Figma'],
+    image: '/sipintar profile.png',
+    link: 'https://sipintar.bpppambon.com/',
+    achievements: [
+      'Website resmi beroperasi aktif melayani peserta pelatihan kelautan dan perikanan di seluruh Indonesia.',
+      'Implementasi sistem verifikasi sertifikat digital dan autentikasi token JWT yang andal.'
+    ]
+  },
+  {
+    id: 'proj-sipinjam',
+    title: 'SiPinjam - Sistem Peminjaman Sarpras BPPP Ambon',
+    type: 'Sistem Informasi & Layanan Internal (KKP RI)',
+    period: 'Agu 2026 – Sekarang',
+    role: 'Frontend Developer & UI/UX Designer',
+    description: 'Aplikasi berbasis web untuk digitalisasi tata kelola dan permohonan peminjaman sarana prasarana serta fasilitas kediklatan di Balai Pelatihan dan Penyuluhan Perikanan (BPPP) Ambon secara transparan, akuntabel, dan terstruktur.',
+    details: [
+      'Meredesign alur pengguna (user flow) sistem peminjaman sarana dan prasarana agar proses birokrasi peminjaman menjadi lebih ringkas dan mudah dipahami pemohon.',
+      'Mengimplementasikan mekanisme verifikasi dan approval persetujuan peminjaman menggunakan tanda tangan hasil pemindaian digital.',
+      'Merancang antarmuka dashboard monitoring ketersediaan sarana, jadwal peminjaman, serta status verifikasi permohonan inventaris instansi.',
+      'Memastikan integrasi antarmuka yang responsif, rapi, dan konsisten dengan identitas visual instansi BPPP Ambon.'
+    ],
+    tech: ['PHP', 'Laravel', 'UI/UX Redesign', 'Digital Signature', 'MySQL', 'Bootstrap 5', 'Figma'],
+    image: '/sipinjam.png',
+    link: 'https://pinjam.bpppambon.com/',
+    achievements: [
+      'Mempercepat waktu pemrosesan dan tracking status peminjaman inventaris instansi secara real-time.',
+      'Penerapan validasi tanda tangan digital yang sah untuk alur persetujuan peminjaman sarana dan prasarana.'
+    ]
+  },
   {
     id: 'proj-1',
     title: 'Platform Analisis Ketahanan Pangan (Abdimas)',

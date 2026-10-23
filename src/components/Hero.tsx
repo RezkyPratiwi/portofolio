@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'motion/react';
-import { Mail, MapPin, Phone, Linkedin, Instagram, ArrowRight, Download, Award, ShieldAlert, GraduationCap, Code2, Palette } from 'lucide-react';
+import { Mail, MapPin, Phone, Linkedin, Instagram, ArrowRight, Download, Eye, Award, ShieldAlert, GraduationCap, Code2, Palette } from 'lucide-react';
 import { PERSONAL_INFO } from '../data';
 
 interface HeroProps {
@@ -162,17 +162,29 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
               >
                 <span>Lihat Karya & Projek</span>
               </button>
-              <a
-                href="/CV_Rezky_Pratiwi.pdf"
-                download="CV_Rezky_Pratiwi.pdf"
-                target="_blank"
-                rel="noreferrer"
-                id="hero-drive-btn"
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-6 py-3.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-lg transition-all"
-              >
-                <Download className="w-4 h-4" />
-                <span>Unduh CV</span>
-              </a>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href="/CV_Rezky_Pratiwi.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  id="hero-view-cv-btn"
+                  className="inline-flex items-center space-x-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800/80 px-4 py-3.5 rounded-xl text-sm font-semibold shadow-xs hover:shadow-sm transition-all"
+                  title="Buka CV di Tab Baru"
+                >
+                  <Eye className="w-4 h-4" />
+                  <span>Lihat CV</span>
+                </a>
+                <a
+                  href="/CV_Rezky_Pratiwi.pdf"
+                  download="CV_Rezky_Pratiwi.pdf"
+                  id="hero-drive-btn"
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white px-5 py-3.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-lg transition-all"
+                  title="Unduh Berkas PDF CV"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Unduh CV</span>
+                </a>
+              </div>
             </motion.div>
 
             {/* Quick Stats Banner */}

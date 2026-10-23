@@ -153,7 +153,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               rel="noreferrer"
               className="inline-flex items-center space-x-1.5 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm hover:shadow transition-all"
             >
-              <span>Baca Berita Resmi</span>
+              <span>
+                {project.link.includes('pinjam.bpppambon.com')
+                  ? 'Kunjungi Website SiPinjam'
+                  : project.link.includes('bpppambon.com') || project.link.includes('sipintar')
+                  ? 'Kunjungi Website SiPintar'
+                  : project.link.includes('detail')
+                  ? 'Baca Berita Resmi'
+                  : 'Kunjungi Website'}
+              </span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}

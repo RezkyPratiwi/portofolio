@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PROJECT_DATA } from '../data';
 import { Project } from '../types';
-import { Award, Code2, Layers, Search, FolderKanban, ArrowUpRight, HelpCircle, Laptop } from 'lucide-react';
+import { Award, Code2, Layers, Search, FolderKanban, ArrowUpRight, HelpCircle, Laptop, Globe } from 'lucide-react';
 
 interface ProjectsProps {
   onSelectProject: (project: Project) => void;
@@ -26,7 +26,7 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
   const filteredProjects = PROJECT_DATA.filter((proj) => {
     if (filter === 'all') return true;
     if (filter === 'competition') return proj.type.toLowerCase().includes('kompetisi') || proj.type.toLowerCase().includes('ajang') || proj.title.toLowerCase().includes('gemastik') || proj.title.toLowerCase().includes('innovilage') || proj.title.toLowerCase().includes('krenova');
-    return proj.type.toLowerCase().includes('pengabdian') || proj.type.toLowerCase().includes('instansi') || proj.type.toLowerCase().includes('kolaborasi');
+    return proj.type.toLowerCase().includes('pengabdian') || proj.type.toLowerCase().includes('instansi') || proj.type.toLowerCase().includes('kolaborasi') || proj.type.toLowerCase().includes('platform') || proj.type.toLowerCase().includes('layanan');
   });
 
   return (
@@ -106,56 +106,88 @@ export default function Projects({ onSelectProject }: ProjectsProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35 }}
-                className="group relative overflow-hidden flex flex-col justify-between bg-slate-50 dark:bg-slate-800/50 border border-slate-100/80 dark:border-slate-700/50 rounded-2xl p-6 hover:bg-white dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-600 hover:shadow-md transition-all cursor-pointer"
+                className="group relative overflow-hidden flex flex-col justify-between bg-slate-50 dark:bg-slate-800/50 border border-slate-100/80 dark:border-slate-700/50 rounded-2xl hover:bg-white dark:hover:bg-slate-800 hover:border-slate-200 dark:hover:border-slate-600 hover:shadow-lg transition-all cursor-pointer"
                 onClick={() => onSelectProject(proj)}
               >
-                {/* Background Image Blend */}
-                {proj.image && (
-                  <div className="absolute inset-0 z-0 opacity-[0.05] dark:opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-500 pointer-events-none mix-blend-multiply dark:mix-blend-screen">
-                    <img src={proj.image} alt="" className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" />
-                  </div>
-                )}
-
-                <div className="relative z-10 space-y-4">
-
-                  {/* Category Indicator */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded transition-colors">
+                {/* Image Showcase Banner if available */}
+                {proj.image ? (
+                  <div className="relative w-full h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-700/60">
+                    <img
+                      src={proj.image}
+                      alt={proj.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                    <span className="absolute top-3 left-3 text-[10px] font-mono font-bold uppercase bg-slate-900/80 backdrop-blur-md text-white px-2.5 py-1 rounded-md shadow-xs">
                       {proj.period}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform">
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex items-center justify-center shadow-xs">
                       {getIconForCategory(proj.type)}
                     </div>
                   </div>
+                ) : null}
 
-                  {/* Info Details */}
-                  <div className="space-y-2">
-                    <h3 className="font-extrabold text-slate-950 dark:text-white text-base sm:text-lg leading-snug tracking-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors flex items-center justify-between">
-                      <span className="truncate mr-2">{proj.title}</span>
-                      <ArrowUpRight className="w-4 h-4 text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-all shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </h3>
-                    <span className="block text-[10px] font-mono font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider transition-colors">{proj.role}</span>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal text-justify line-clamp-3 transition-colors">
-                      {proj.description}
-                    </p>
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div className="space-y-4">
+
+                    {/* Category Indicator if NO image */}
+                    {!proj.image && (
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded transition-colors">
+                          {proj.period}
+                        </span>
+                        <div className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center shadow-3xs group-hover:scale-105 transition-transform">
+                          {getIconForCategory(proj.type)}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Info Details */}
+                    <div className="space-y-2">
+                      <h3 className="font-extrabold text-slate-950 dark:text-white text-base sm:text-lg leading-snug tracking-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors flex items-center justify-between">
+                        <span className="truncate mr-2">{proj.title}</span>
+                        <ArrowUpRight className="w-4 h-4 text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-all shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </h3>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="block text-[10px] font-mono font-bold text-primary-600 dark:text-primary-400 uppercase tracking-wider transition-colors">{proj.role}</span>
+                        {proj.link && (
+                          <a
+                            href={proj.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center space-x-1 text-[11px] font-semibold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 hover:underline transition-colors shrink-0"
+                            title={`Kunjungi ${proj.link}`}
+                          >
+                            <Globe className="w-3 h-3" />
+                            <span className="truncate max-w-[130px]">{proj.link.replace(/^https?:\/\//, '')}</span>
+                            <ArrowUpRight className="w-2.5 h-2.5" />
+                          </a>
+                        )}
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal text-justify line-clamp-3 transition-colors">
+                        {proj.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="relative z-10 mt-5 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex flex-wrap gap-1 transition-colors">
-                  {proj.tech.slice(0, 4).map((tech) => (
-                    <span
-                      key={tech}
-                      id={`proj-tech-badge-${proj.id}-${tech.toLowerCase()}`}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {proj.tech.length > 4 && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-transparent transition-colors">
-                      +{proj.tech.length - 4}
-                    </span>
-                  )}
+                  <div className="mt-5 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex flex-wrap gap-1 transition-colors">
+                    {proj.tech.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        id={`proj-tech-badge-${proj.id}-${tech.toLowerCase()}`}
+                        className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {proj.tech.length > 4 && (
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-transparent transition-colors">
+                        +{proj.tech.length - 4}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
               </motion.div>
